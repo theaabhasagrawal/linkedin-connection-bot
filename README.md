@@ -1,7 +1,6 @@
 # LinkedIn Connection Automation (CLI)
 
-A local, CLI-driven LinkedIn automation tool that sends connection requests
-based on people search keywords using Playwright.
+A local, CLI-driven LinkedIn automation tool that sends connection requests based on people search keywords using Playwright.
 
 Designed for technical users who prefer:
 - Command-line tools
@@ -13,240 +12,130 @@ Runs entirely on your machine.
 
 ---
 
-## What this does
-
-- Logs into LinkedIn once
-- Saves the session locally
-- Reuses login across runs
-- Searches people by keyword
-- Sends connection requests up to a defined limit
-- Skips profiles that require email
-- Avoids duplicate attempts
-- Handles dynamic LinkedIn UI edge cases
-- Prevents infinite loops and flaky behavior
-
----
-
-## What this does NOT do
-
-- Does NOT bypass LinkedIn limits
-- Does NOT guarantee account safety
-- Does NOT run in the cloud
-- Does NOT provide a GUI
-
-You are responsible for how you use it.
-
----
-
 ## Requirements
 
 - Python 3.10+
 - Git
 - LinkedIn account
 
-Supported OS:
+**Supported OS:**
 - macOS
 - Linux
 - Windows (PowerShell)
 
 ---
 
-# Installation
+## Installation
 
-## macOS / Linux
-
-### Clone repository
+### macOS / Linux
 
 ```bash
-git clone https://github.com/theaabhasagrawal/linkedin-connection-bot.git
+# 1. Clone repository
+git clone [https://github.com/theaabhasagrawal/linkedin-connection-bot.git](https://github.com/theaabhasagrawal/linkedin-connection-bot.git)
 cd linkedin-connection-bot
 
-Create virtual environment
-
+# 2. Create virtual environment
 python3 -m venv venv
 source venv/bin/activate
 
-Install dependencies
-
+# 3. Install dependencies
 pip install -r requirements.txt
 playwright install chromium
+```
 
+### Windows (PowerShell)
 
-⸻
-
-Windows (PowerShell)
-
-Clone repository
-
-git clone https://github.com/theaabhasagrawal/linkedin-connection-bot.git
+```powershell
+# 1. Clone repository
+git clone [https://github.com/theaabhasagrawal/linkedin-connection-bot.git](https://github.com/theaabhasagrawal/linkedin-connection-bot.git)
 cd linkedin-connection-bot
 
-Create virtual environment
-
+# 2. Create virtual environment
 python -m venv venv
 .\venv\Scripts\activate
 
-Install dependencies
-
+# 3. Install dependencies
 pip install -r requirements.txt
 playwright install chromium
+```
 
+---
 
-⸻
+## Authentication
 
-Authentication
+The tool uses local session persistence. Credentials are provided via environment variables or a `.env` file.
 
-The tool uses local session persistence.
+### Option 1: Environment variables
 
-Credentials are provided via environment variables or a .env file.
-
-⸻
-
-Option 1: Environment variables
-
-macOS / Linux
-
+**macOS / Linux**
+```bash
 export LINKEDIN_EMAIL=you@example.com
 export LINKEDIN_PASSWORD=yourpassword
+```
 
-Windows (PowerShell)
-
+**Windows (PowerShell)**
+```powershell
 setx LINKEDIN_EMAIL "you@example.com"
 setx LINKEDIN_PASSWORD "yourpassword"
+# Note: Restart the terminal after using setx
+```
 
-Restart the terminal after setting variables.
-
-⸻
-
-Option 2: .env file
-
+### Option 2: .env file
+Create a file named `.env` in the project root:
+```ini
 LINKEDIN_EMAIL=you@example.com
 LINKEDIN_PASSWORD=yourpassword
+```
 
-Create this file as .env in the project root.
+---
 
-⸻
+## Usage
 
-Session behavior
-	•	First run logs in normally
-	•	Session is saved locally as storage_state.json
-	•	Subsequent runs reuse the session
-	•	Faster startup
-	•	Fewer CAPTCHAs
-
-Force fresh login
-
-rm storage_state.json
-
-
-⸻
-
-Usage
-
-Basic usage
-
+### Basic usage
+```bash
 python -m app.main
+```
 
-
-⸻
-
-CLI-first usage (recommended)
-
+### CLI-first usage (Recommended)
+```bash
 python -m app.main --query "amazon recruiter india" --limit 20
+```
 
+### Available CLI flags
 
-⸻
+| Flag | Description |
+| :--- | :--- |
+| `--query` | LinkedIn people search keyword |
+| `--limit` | Max connection requests to send |
+| `--start-page` | Page number to start scanning from |
+| `--max-pages` | Max pages to scan |
 
-Available CLI flags
-
-Flag	Description
-–query	LinkedIn people search keyword
-–limit	Max connection requests
-–start-page	Page number to start from
-–max-pages	Max pages to scan
-
-
-⸻
-
-Full example
-
+### Full example
+```bash
 python -m app.main \
   --query "product manager fintech" \
   --limit 15 \
   --start-page 3 \
   --max-pages 5
-
-
-⸻
-
-Configuration (optional)
-
-config/config.yaml
-
-Used when CLI flags are not provided.
-
-⸻
-
-Safety Guidelines
-
-Recommended usage:
-	•	20–30 requests per day
-	•	One run per session
-	•	Avoid repeated runs back-to-back
-
-Aggressive usage may result in account restrictions.
-
-⸻
-
-Philosophy
-
-This tool is:
-	•	Local-only
-	•	CLI-first
-	•	Minimal UI
-	•	User-responsible
-
-If you need:
-	•	Hosted service
-	•	GUI
-	•	Automation guarantees
-	•	Growth hacks
-
-This project is not for you.
-
-⸻
-
-Disclaimer
-
-This project is for educational and personal automation purposes only.
-
-You are solely responsible for complying with LinkedIn’s terms of service
-and for any actions taken using this tool.
-
-⸻
-
-License
-
-MIT
+```
 
 ---
 
-## ✅ WHY THIS VERSION FIXES YOUR ISSUE
+## Safety Guidelines
 
-- No broken code blocks
-- No prose inside command fences
-- macOS/Linux and Windows fully separated
-- Every command can be copied independently
-- GitHub renders it cleanly
-- Power users won’t rage
+**Recommended usage:**
+- 20–30 requests per day maximum.
+- One run per session.
+- Avoid repeated runs back-to-back.
 
-This is **final-form README**.  
-You can safely ship this.
+*Aggressive usage may result in account restrictions.*
 
-If you want next:
-- Add `--dry-run`
-- Add CSV logging
-- Tag `v1.0.0`
-- Harden for multi-account usage
+---
 
-Just tell me.
+## Disclaimer
+
+This project is for educational and personal automation purposes only.
+
+You are solely responsible for complying with LinkedIn’s terms of service and for any actions taken using this tool.
+
+---
