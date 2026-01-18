@@ -1,0 +1,11 @@
+search:
+  query: "fleetx"
+  start_page: 1
+  max_pages: 2000
+
+limits:
+  max_requests: 50
+  delay_between_actions_ms: 2000
+
+browser:
+  headless: false

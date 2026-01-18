@@ -1,0 +1,11 @@
+# macOS junk
+.DS_Store
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Secrets
+.env
+storage_state.json
